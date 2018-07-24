@@ -5,6 +5,8 @@ import docutils.nodes
 import docutils.parsers.rst
 import docutils.utils
 
+__all__ = ['AstropyRstChangelog']
+
 VERSION_PATTERN = re.compile('^v?[0-9\.]+ \([\w\-]+\)')
 BLOCK_PATTERN = re.compile('\[#.+\]', flags=re.DOTALL)
 ISSUE_PATTERN = re.compile('#[0-9]+')
@@ -43,14 +45,19 @@ class BulletItemVisitor(docutils.nodes.NodeVisitor):
             self.warn('Unexpected content: {0}'.format(node.astext()))
 
 
-class AstropyChangelog:
+class AstropyRstChangelog:
+
+    def __init__(self):
+        self.warnings = []
 
     def warn(self, message):
         print('WARNING:', message)
+        self.warnings.append(message)
 
     def _validate_version(self, string):
         if VERSION_PATTERN.match(string) is None:
             self.warn("Invalid version string: {0}".format(string))
+        return string.split()[0]
 
     def _parse_observer(self, data):
         if data['level'] > 1:
@@ -84,7 +91,7 @@ class AstropyChangelog:
         for section in document:
 
             title = section.attributes['names'][0]
-            self._validate_version(title)
+            version = self._validate_version(title)
 
             # Inside each version section there may either directly be a list of
             # entries, or more nested sections. We use a visitor class to search
@@ -100,11 +107,27 @@ class AstropyChangelog:
             for item in visitor.bullet_items:
                 issues.extend(find_prs_in_entry(item.astext()))
 
+            self._issues_by_version[version] = issues
+
         self.document = document
 
-        return document
+    @property
+    def versions(self):
+        return sorted(self._issues_by_version)
 
+    @property
+    def issues(self):
+        all_issues = []
+        for version, issues in self._issues_by_version.items():
+            all_issues.extend(issues)
+        return sorted(set(all_issues))
 
-if __name__ == '__main__':
-    parser = ChangelogParser()
-    parser.validate('CHANGES.rst')
+    def issues_for_version(self, version):
+        return self._issues_by_version[version]
+
+    def versions_for_issue(self, issue):
+        versions = []
+        for version, issues in self._issues_by_version.items():
+            if issue in issues:
+                versions.append(version)
+        return versions
