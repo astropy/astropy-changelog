@@ -42,7 +42,7 @@ class BulletItemVisitor(docutils.nodes.NodeVisitor):
         elif isinstance(node, (docutils.nodes.section, docutils.nodes.bullet_list)):
             pass
         else:
-            self.warn('Unexpected content: {0}'.format(node.astext()))
+            self.warn('Unexpected content: {0} ({1})'.format(node.astext(), str(type(node))))
 
 
 class AstropyRstChangelog:
@@ -64,12 +64,12 @@ class AstropyRstChangelog:
             self.warn(data.children[0].astext())
         return data
 
-    def parse(self, filename):
-
-        # Open file and read contents
-
+    def parse_file(self, filename):
         with open(filename) as f:
             text = f.read()
+        return self.parse_string(text)
+
+    def parse_string(self, text):
 
         # Parse as rst
 

@@ -1,1 +1,1 @@
-from astropy_changelog.core import parse  # noqa
+from astropy_changelog.core import load, loads  # noqa
