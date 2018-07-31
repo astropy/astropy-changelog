@@ -86,6 +86,10 @@ class AstropyRstChangelog:
 
         visitor = BulletItemVisitor(document, self.warn)
 
+        # Some changelogs include a title, which we can just ignore
+        if len(document.children) == 1:
+            document = document.children[0].children[1:]
+
         self._issues_by_version = {}
 
         for section in document:
