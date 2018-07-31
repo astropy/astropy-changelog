@@ -1,6 +1,6 @@
 from astropy_changelog.rst_parser import AstropyRstChangelog
 
-__all__ = ['parse']
+__all__ = ['load', 'loads']
 
 
 def load(filename, format='rst'):
