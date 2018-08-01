@@ -1,11 +1,11 @@
 About
 -----
 
-.. image:: https://travis-ci.org/astrofrog/astropy-changelog.svg
-    :target: https://travis-ci.org/astrofrog/astropy-changelog
+.. image:: https://travis-ci.org/astropy/astropy-changelog.svg
+    :target: https://travis-ci.org/astropy/astropy-changelog
 
-.. image:: https://codecov.io/gh/astrofrog/astropy-changelog/branch/master/graph/badge.svg
-    :target: https://codecov.io/gh/astrofrog/astropy-changelog
+.. image:: https://codecov.io/gh/astropy/astropy-changelog/branch/master/graph/badge.svg
+    :target: https://codecov.io/gh/astropy/astropy-changelog
 
 This package contains a parser for the Astropy changelog format. Example usage:
 
