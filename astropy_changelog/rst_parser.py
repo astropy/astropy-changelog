@@ -57,6 +57,7 @@ class AstropyRstChangelog:
     def _validate_version(self, string):
         if VERSION_PATTERN.match(string) is None:
             self.warn("Invalid version string: {0}".format(string))
+            return
         return string.split()[0]
 
     def _parse_observer(self, data):
@@ -88,7 +89,9 @@ class AstropyRstChangelog:
 
         # Some changelogs include a title, which we can just ignore
         if len(document.children) == 1:
-            document = document.children[0].children[1:]
+            title = document[0].attributes['names'][0]
+            if self._validate_version(title) is None:
+                document = document.children[0].children[1:]
 
         self._issues_by_version = {}
 

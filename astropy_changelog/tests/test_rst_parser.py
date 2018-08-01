@@ -1,5 +1,5 @@
 import os
-from astropy_changelog import load
+from astropy_changelog import load, loads
 
 DATA = os.path.join(os.path.dirname(__file__), 'data')
 
@@ -37,3 +37,18 @@ def test_rst_parser_helpers_style():
     assert changelog.issues_for_version('0.1') == []
     assert changelog.issues_for_version('1.0') == [100]
     assert changelog.versions_for_issue(100) == ['1.0']
+
+
+SIMPLE_CHANGELOG = ('1.0 (2018-10-22)\n'
+                    '----------------\n'
+                    '* change1 [#1234]\n')
+
+
+def test_short_rst():
+
+    # Regression test for a bug that caused a changelog with only one version section to fail
+
+    changelog = loads(SIMPLE_CHANGELOG)
+
+    assert changelog.versions == ['1.0']
+    assert changelog.issues == [1234]
