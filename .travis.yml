@@ -12,8 +12,8 @@ install:
     - pip install .[test]
 
 script:
+    - python setup.py check --restructuredtext
     - pytest -rx --flake8 --cov astropy_changelog astropy_changelog
 
 after_success:
     - codecov
-
