@@ -12,5 +12,5 @@ setup(version='0.1.dev0',
       author='Thomas Robitaille',
       author_email='thomas.robitaille@gmail.com',
       package_data={'astropy_changelog.tests': ['data/*']},
-      extras_require={'test': ['pytest>=3.5,<3.7', 'pytest-flake8', 'pytest-cov', 'codecov']},
+      extras_require={'test': ['pytest>=3.5', 'pytest-flake8', 'pytest-cov', 'codecov']},
       install_requires=["docutils"])
