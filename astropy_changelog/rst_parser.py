@@ -7,9 +7,9 @@ import docutils.utils
 
 __all__ = ['AstropyRstChangelog']
 
-VERSION_PATTERN = re.compile('^v?[0-9\.]+ \([\w\-]+\)')
-BLOCK_PATTERN = re.compile('\[#.+\]', flags=re.DOTALL)
-ISSUE_PATTERN = re.compile('#[0-9]+')
+VERSION_PATTERN = re.compile(r'^v?[0-9\.]+ \([\w\-]+\)')
+BLOCK_PATTERN = re.compile(r'\[#.+\]', flags=re.DOTALL)
+ISSUE_PATTERN = re.compile(r'#[0-9]+')
 
 
 def find_prs_in_entry(content):
