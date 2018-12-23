@@ -7,6 +7,10 @@ About
 .. image:: https://codecov.io/gh/astropy/astropy-changelog/branch/master/graph/badge.svg
     :target: https://codecov.io/gh/astropy/astropy-changelog
 
+To install::
+
+    pip install astropy-changelog
+
 This package contains a parser for the Astropy changelog format. Example usage:
 
 .. code:: python
