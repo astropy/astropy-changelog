@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  schedule:
+    # Weekly Thursday 5AM build
+    # * is a special character in YAML so you have to quote this string
+    - cron: '0 5 * * 4'
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+    - name: Install
+      run: pip install .[test]
+    - name: Tests
+      run: |
+        python setup.py check --restructuredtext
+        pytest -rx --flake8 --cov astropy_changelog astropy_changelog
+    - name: Compute coverage
+      run: coverage xml -o ./coverage.xml
+    - name: Upload coverage to codecov
+      uses: codecov/codecov-action@v1
+      with:
+        file: ./coverage.xml

@@ -1,10 +1,12 @@
 About
 -----
 
-.. image:: https://travis-ci.org/astropy/astropy-changelog.svg
-    :target: https://travis-ci.org/astropy/astropy-changelog
+.. image:: https://github.com/astropy/astropy-changelog/workflows/CI/badge.svg
+    :alt: CI Status
+    :target: https://github.com/astropy/astropy-changelog/actions
 
 .. image:: https://codecov.io/gh/astropy/astropy-changelog/branch/master/graph/badge.svg
+    :alt: Coverage
     :target: https://codecov.io/gh/astropy/astropy-changelog
 
 To install::
