@@ -5,7 +5,7 @@ About
     :alt: CI Status
     :target: https://github.com/astropy/astropy-changelog/actions
 
-.. image:: https://codecov.io/gh/astropy/astropy-changelog/branch/master/graph/badge.svg
+.. image:: https://codecov.io/gh/astropy/astropy-changelog/branch/main/graph/badge.svg
     :alt: Coverage
     :target: https://codecov.io/gh/astropy/astropy-changelog
 
