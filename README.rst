@@ -1,3 +1,8 @@
+This repository is archived
+---------------------------
+
+See https://github.com/scientific-python/action-check-changelogfile instead.
+
 About
 -----
 
